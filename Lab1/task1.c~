@@ -12,10 +12,10 @@ int main(){
     }
     else{
       if(fork() != 0){//fork off child process; tests whether it's the parent process
-	waitpid(-1, NULL, 0);//wait for child (Hello World) to finish; -1 in first parameter refers to waiting for the child process
+	waitpid(-1, NULL, 0);//wait for child (Hello World) to finish; -1 in first parameter refers to waiting for the child process, second parameter is NULL since we don't need a place for the terminating process, and third parameter is zero since we don't have optional actions for waitpid()
       }
       else{//execute Hello World program
-	execve("./helloworld", NULL, NULL);
+	execve("./helloworld", NULL, NULL);//second parameter is argv but we don't have any argument strings we need to pass through, third parameter is NULL since we having nothing to pass as environment to the new program
       }
     }
   }

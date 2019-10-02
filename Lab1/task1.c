@@ -11,7 +11,7 @@ int main(){
       break;
     }
     else{
-      if(fork() != 0){//fork off child process; tests whether it's the parent process
+      if(fork() != 0){//fork off child process; tests whether it's the parent process, this portion signifies that we are still on the parent process
 	waitpid(-1, NULL, 0);//wait for child (Hello World) to finish; -1 in first parameter refers to waiting for the child process, second parameter is NULL since we don't need a place for the terminating process, and third parameter is zero since we don't have optional actions for waitpid()
       }
       else{//execute Hello World program
