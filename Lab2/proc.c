@@ -1311,7 +1311,7 @@ PRIVATE struct proc * pick_proc(void)
    */
   for (q=0; q < NR_SCHED_QUEUES; q++) {	
     if(q > 6){
-      q = (rand()%(NR_SCHED_QUEUES-7))+7;//pick a process between 7-15
+      q = (rand()%(NR_SCHED_QUEUES-7))+7;//pick a process between 7 and NR_SCHED_QUEUES, roughly 11% chance of picking a queue at random (1/(NR_SCHED_QUEUES-7) = 1/9)
     }
     if(!(rp = rdy_head[q])) {//if the queue is empty, then just move on
 		TRACE(VF_PICKPROC, printf("queue %d empty\n", q););

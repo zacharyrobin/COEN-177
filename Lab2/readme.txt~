@@ -1,0 +1,5 @@
+Ethan Paek
+COEN 177 Lab #2
+October 9th, 2019
+
+The first task was to search for the banner that appears upon start-up of the OS in the kernel file. To accomplish this, I used a system call named grep to locate the main.c file. From there, I was able to locate the copyright message on line 275. Thus, I added my own personal statement on line 278. To test this,  
