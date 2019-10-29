@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 	pageTable[pageTableIndex++] = pageRequest;//insert into the array
       } 
       else {//if array is full, then we need to perform FIFO, which means to remove the first page from the queue and queue both and insert the current page
-	for(int i = 0; i < tableSize; i++){
+	for(int i = 0; i < tableSize-1; i++){
 	  pageTable[i] = pageTable[i+1];//shift all the elements by one space towards the front since we want to remove the oldest page from the queue
 	}
 	pageTable[tableSize-1] = pageRequest;
