@@ -40,13 +40,17 @@ int main(int argc, char *argv[]) {
       fprintf(fp, "Page %d caused a page fault.\n", pageRequest);
       numMisses++;//increment our number of misses if we have a page fault, signifying that it's not in our main memory 
       if(pageTableIndex < tableSize) {//check if we can hold more pages
-	pageTable[pageTableIndex++] = pageRequest;//insert into the array
+	for(int o = pageTableIndex; o > 0; o--){
+	  pageTable[o] = pageTable[o-1];
+	}
+	pageTableIndex++;
+	pageTable[0] = pageRequest;//insert at the head of the array
       } 
       else {//if array is full, then we need to perform FIFO, which means to remove the first page from the queue and queue both and insert the current page
-	for(int p = 0; p < tableSize-1; p++){
-	  pageTable[p] = pageTable[p+1];
+	for(int p = tableSize-1; p > 0; p--){
+	  pageTable[p] = pageTable[p-1];
 	}
-	pageTable[tableSize-1] = pageRequest;//make out pageRequest the newest item in the array
+	pageTable[0] = pageRequest;//make out pageRequest the newest item in the array
       }
     }
     else{
@@ -57,12 +61,13 @@ int main(int argc, char *argv[]) {
 	  break;
 	}
       }
-      for(int k = j; k < tableSize; k++){
-	pageTable[k] = pageTable[k+1];//shift everything up by 1 spot, from the point of the least recently used e
+      for(int k = j; k > 0; k--){
+	pageTable[k] = pageTable[k-1];//shift everything up by 1 spot, from the point of the least recently used e
   }
-      pageTable[tableSize-1] = pageRequest;//make out pageRequest the newest item in the array
+      pageTable[0] = pageRequest;//make out pageRequest the newest item in the array
     }
   }
+  printf("Hit rate = %f\n", (numRequest-numMisses)/(double)numRequest);
   fprintf(fp, "Hit rate = %f\n", (numRequest-numMisses)/(double)numRequest);
   printf("We had a total of %d requests and %d misses! Not too shabby ol chap...\n", pageRequest, numMisses);
 
