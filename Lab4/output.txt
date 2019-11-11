@@ -1,0 +1,15 @@
+Sequential Read
+---------------
+0.1 Gig: 0.05s
+0.5 Gig: 0.18s
+1 Gig: 0.30s
+5 Gigs: 1.22s
+10 Gigs: 2.30s
+
+Random Read
+-----------
+0.1 Gig: 0.28s
+0.5 Gig: 1.22s
+1 Gig: 2.34s
+5 Gigs: 11.29s
+10 Gigs: 22.66s
